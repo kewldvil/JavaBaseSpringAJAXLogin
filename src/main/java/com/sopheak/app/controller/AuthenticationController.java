@@ -11,7 +11,7 @@ public class AuthenticationController {
 	@RequestMapping(value="/accessDenied")
 	public String accessDenied(ModelMap m){
 		m.addAttribute("msg","You are not authorized to access this page");
-		return "errors/accessDenied";
+		return "accessDenied";
 	}
 	
 	@RequestMapping(value="/login")
