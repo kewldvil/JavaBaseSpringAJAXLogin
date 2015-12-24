@@ -36,11 +36,15 @@ public class User implements UserDetails{
 	
 	private String email;
 	private String position;
-	private int approvedBy;
-	private Date approvedDate;
-	private Date createdDate;
-	private int createdBy;
+	private String name;
 	
+
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	private String username;
 	private String password;
@@ -56,9 +60,14 @@ public class User implements UserDetails{
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+	
+	@Column(columnDefinition="Boolean DEFAULT TRUE")
 	private boolean accountNonExpired = true;
-    private boolean accountNonLocked = true;
+	@Column(columnDefinition="Boolean DEFAULT TRUE")
+	private boolean accountNonLocked = true;
+	@Column(columnDefinition="Boolean DEFAULT TRUE")
     private boolean credentialsNonExpired = true;
+	@Column(columnDefinition="Boolean DEFAULT TRUE")
     private boolean enabled = true;
     
 	public int getId() {
@@ -91,30 +100,7 @@ public class User implements UserDetails{
 	public void setPosition(String position) {
 		this.position = position;
 	}
-	public int getApprovedBy() {
-		return approvedBy;
-	}
-	public void setApprovedBy(int approvedBy) {
-		this.approvedBy = approvedBy;
-	}
-	public Date getApprovedDate() {
-		return approvedDate;
-	}
-	public void setApprovedDate(Date approvedDate) {
-		this.approvedDate = approvedDate;
-	}
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-	public int getCreatedBy() {
-		return createdBy;
-	}
-	public void setCreatedBy(int createdBy) {
-		this.createdBy = createdBy;
-	}
+	
 	public boolean isAccountNonExpired() {
 		return accountNonExpired;
 	}
