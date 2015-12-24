@@ -2,27 +2,38 @@ package com.sopheak.app.entities;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Null;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.sopheak.app.entities.UserRole;
+import com.sopheak.app.entities.Role;
 
 
 
 @Entity
-@Table(name="tblUser")
+@Table(name="TBLUSER")
 public class User implements UserDetails{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="user_id")
 	private int id;
+	
 	private String email;
 	private String position;
 	private int approvedBy;
@@ -33,7 +44,18 @@ public class User implements UserDetails{
 
 	private String username;
 	private String password;
-	private List<UserRole> roles;
+	@ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name="TBLUSER_ROLE",joinColumns={@JoinColumn(name="user_id")},inverseJoinColumns={@JoinColumn(name="role_id")}) 
+	private Set<Role> roles;
+	
+	
+	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 	private boolean accountNonExpired = true;
     private boolean accountNonLocked = true;
     private boolean credentialsNonExpired = true;
@@ -92,12 +114,6 @@ public class User implements UserDetails{
 	}
 	public void setCreatedBy(int createdBy) {
 		this.createdBy = createdBy;
-	}
-	public List<UserRole> getRoles() {
-		return roles;
-	}
-	public void setRoles(List<UserRole> roles) {
-		this.roles = roles;
 	}
 	public boolean isAccountNonExpired() {
 		return accountNonExpired;

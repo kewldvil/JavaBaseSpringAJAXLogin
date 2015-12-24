@@ -1,6 +1,8 @@
 package com.sopheak.app.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -8,10 +10,12 @@ import javax.persistence.Table;
 @Table(name="tblProduct")
 public class Product {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int productId;
 	public int getProductId() {
 		return productId;
 	}
+	
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
