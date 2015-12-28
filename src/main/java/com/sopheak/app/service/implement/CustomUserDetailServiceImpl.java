@@ -26,6 +26,9 @@ public class CustomUserDetailServiceImpl  implements UserDetailsService{
 			System.out.println("User not found");
 			throw new UsernameNotFoundException("User not found");
 		}
+		
+		System.out.println("_________________"+user.getRoles().iterator().next().getRoleName());
+		
 		return user;
 	}
 

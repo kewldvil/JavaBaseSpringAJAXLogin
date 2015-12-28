@@ -8,7 +8,5 @@
 </head>
 <body>
 	<h1>Welcome to Index</h1>
-	${test}
-
 </body>
 </html>

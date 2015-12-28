@@ -1,12 +1,9 @@
 package com.sopheak.app.configuration;
 
-import javax.sql.DataSource;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -48,5 +45,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		dataSource.setPassword("root");
 		return dataSource;
 	}*/
+	
+	
+	@Bean
+	public DefaultWebSecurityExpressionHandler defaultWeb(){
+		return new DefaultWebSecurityExpressionHandler();
+	}
+
 	
 }

@@ -48,9 +48,11 @@ public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHa
 			System.out.println("Extract Role: " + authority.getAuthority());
 		}
 		if (roles.contains("ROLE_ADMIN")) {
-			return "admin";
+//			return "admin";
+			return "product";
 		}else if(roles.contains("ROLE_USER")){
-			return "user";
+//			return "user";
+			return "product";
 		}else{
 			return "accessDenied";
 		}
